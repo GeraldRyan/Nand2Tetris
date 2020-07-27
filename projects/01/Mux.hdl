@@ -8,6 +8,7 @@
  * out = a if sel == 0
  *       b otherwise
  ---Implemented with and/or/not gates
+
  */
 
 CHIP Mux {
@@ -15,5 +16,8 @@ CHIP Mux {
     OUT out;
 
     PARTS:
-
+    Not (in=sel, out=notSel);
+    And(a=a,b=notSel, out=andA);
+    And(a=sel, b=b, out=andB);
+    Or(a=andA, b=andB, out=out);
 }
